@@ -5,6 +5,7 @@ export interface ISong extends Document {
   title: string;
   filename: string;
   url: string;
+  art: string;
 }
 
 export const songSchema = new Schema({
@@ -17,6 +18,10 @@ export const songSchema = new Schema({
     trim: true
   },
   url: {
+    type: String,
+    trim: true
+  },
+  art: {
     type: String,
     trim: true
   }

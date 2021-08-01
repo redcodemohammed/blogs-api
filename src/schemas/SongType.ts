@@ -7,6 +7,7 @@ export const SongType = new GraphQLObjectType({
     title: { type: GraphQLString },
     filename: { type: GraphQLString },
     url: { type: GraphQLString },
+    art: { type: GraphQLString },
   })
 })
 
