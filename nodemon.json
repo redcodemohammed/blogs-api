@@ -2,6 +2,9 @@
   "env": {
     "PORT": 3000,
     "dev": true,
-    "database_url": "mongodb+srv://recipe:5N6x9YVz2eo833VS@recipe-planet.bbjy2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "database_url": "mongodb+srv://recipe:5N6x9YVz2eo833VS@recipe-planet.bbjy2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwt_secret_key": "QkF8IBzYta6YcfmLNPrF9DFPnQdwXKcZywPiwdResgFnzUob2vVUpq+R0D2NfBXqPWw6hd4uqqM4yl/sknaKLNb7D8DRYPLNiQoC45PrBqEvF9pRVQainorUGOaRbJqVDS3FpWCVgTV/Advnh3B8n5SDf99isFa63TnwQdqcNsol5CAcMKZ5IJJS0z6uYssYTg82CyHqhMOnfi1oQMhikm3tO1TCAHmGE6OBwOESrS50q9xpdhqC6102CDnr3rWE2Aar5MQXe6C+KLW6NC7SWpJJ+9wmDdbI7OH+c9uhvNXHofGLE2kZYdgkNB6LSoqpRJsN90oZJ+9iFtblJ+CTBQ==",
+    "admin_username": "admin",
+    "admin_password": "admin"
   }
 }

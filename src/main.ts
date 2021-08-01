@@ -1,4 +1,4 @@
-import express from "express"
+import express, { Request } from "express"
 import { createServer } from "http"
 import { graphqlHTTP } from "express-graphql"
 import { connect } from "mongoose";
@@ -9,22 +9,34 @@ import blogs from "./mock_data/blogs.json";
 import songs from "./mock_data/songs.json";
 import blogsModel from "./models/Blog";
 import songsModel from "./models/Song";
+import is_auth from "./middlewares/is_auth";
 
-const { PORT, dev, database_url } = process.env;
+const { PORT, dev, database_url, jwt_secret_key, admin_username, admin_password } = process.env;
 
 const app = express()
 const server = createServer(app)
 
-app.use('/graphql', graphqlHTTP({
+app.use(is_auth)
+
+app.use('/graphql', graphqlHTTP((req: Request) => ({
   graphiql: !!dev,
-  schema: Schema
-}))
+  schema: Schema,
+  //@ts-ignore
+  context: { is_auth: req.is_auth }
+})))
 
 if (!PORT) {
   console.error('PORT enviroment var must be provided')
   process.exit()
 } else if (!database_url) {
   console.error('database_url enviroment var must be provided')
+  process.exit()
+} else if (!jwt_secret_key) {
+  console.error('jwt_secret_key enviroment var must be provided')
+  process.exit()
+}
+else if (!admin_username || !admin_password) {
+  console.error('admin enviroment vars must be provided')
   process.exit()
 }
 
@@ -33,7 +45,7 @@ server.listen(PORT, async () => {
     await connect(database_url, { useNewUrlParser: true, useUnifiedTopology: true })
     console.log('🪣 connected to database')
     console.log(`🚀 server started at \x1b[34m%s\x1b[0m`, `${dev ? 'http://localhost:' : 'PORT '}${PORT}`)
-    if (dev) put_mock_data()
+    // if (dev) put_mock_data()
   }
   catch (err) {
     console.log('❌ database connection error',)

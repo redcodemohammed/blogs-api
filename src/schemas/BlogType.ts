@@ -6,6 +6,7 @@ export const BlogType = new GraphQLObjectType({
     id: { type: GraphQLString },
     title: { type: GraphQLString },
     body: { type: GraphQLString },
+    art: { type: GraphQLString },
     times_read: { type: GraphQLInt },
     tags: { type: GraphQLList(GraphQLString) },
     published_date: {

@@ -12,6 +12,7 @@ export interface IBlog extends Document {
     day: number;
   };
   pdf_link: string;
+  art: string;
 }
 
 export const blogSchema = new Schema({
@@ -32,7 +33,12 @@ export const blogSchema = new Schema({
     default: [],
   },
   published_date: Object,
-  pdf_link: String
+  pdf_link: String,
+  art: {
+    type: String,
+    trim: true,
+    default: ''
+  }
 })
 
 export const blogsModel = model<IBlog>('blog', blogSchema)

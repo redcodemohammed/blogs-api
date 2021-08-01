@@ -14,9 +14,12 @@
   },
   "include": [
     "src/**/*.ts",
-    "@types",
+    "@types/**/*.d.ts",
   ],
   "exclude": [
     "node_modules"
+  ],
+  "files": [
+    "@types/express/index.d.ts"
   ]
 }
