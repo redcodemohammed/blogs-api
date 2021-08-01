@@ -20,7 +20,23 @@ export const RootQuery = new GraphQLObjectType({
       type: GraphQLList(BlogType),
       args: { limit: { type: GraphQLInt } },
       async resolve(parent, args,) {
-        return await blogsModel.find().limit(args.limit);
+        return await blogsModel.find().limit(args.limit).sort({ _id: -1 });
+      }
+    },
+    mostReadBlogs: {
+      type: GraphQLList(BlogType),
+      args: { limit: { type: GraphQLInt } },
+      async resolve(parent, args,) {
+        return await blogsModel.find().limit(args.limit).sort({ times_read: -1 });
+      }
+    },
+    tags: {
+      type: GraphQLList(GraphQLString),
+      async resolve(parent, args,) {
+        const blogs = await blogsModel.find()
+        let tags = []
+        blogs.forEach(blog => tags = [...tags, ...blog.tags])
+        return [...new Set(tags)]
       }
     },
     song: {
