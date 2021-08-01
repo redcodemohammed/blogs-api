@@ -1,4 +1,5 @@
 import express, { Request } from "express"
+import cors from "cors";
 import { createServer } from "http"
 import { graphqlHTTP } from "express-graphql"
 import { connect } from "mongoose";
@@ -16,7 +17,7 @@ const { PORT, dev, database_url, jwt_secret_key, admin_username, admin_password 
 const app = express()
 const server = createServer(app)
 
-app.use(is_auth)
+app.use(cors(), is_auth)
 
 app.use('/graphql', graphqlHTTP((req: Request) => ({
   graphiql: !!dev,
