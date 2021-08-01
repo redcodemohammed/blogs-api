@@ -23,6 +23,9 @@ app.use('/graphql', graphqlHTTP({
 if (!PORT) {
   console.error('PORT enviroment var must be provided')
   process.exit()
+} else if (!database_url) {
+  console.error('database_url enviroment var must be provided')
+  process.exit()
 }
 
 server.listen(PORT, async () => {
