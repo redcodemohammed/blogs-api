@@ -16,7 +16,7 @@ const app = express()
 const server = createServer(app)
 
 app.use('/graphql', graphqlHTTP({
-  graphiql: true,
+  graphiql: !!dev,
   schema: Schema
 }))
 
