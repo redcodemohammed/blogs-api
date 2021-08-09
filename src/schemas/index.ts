@@ -120,6 +120,7 @@ const RootMutation = new GraphQLObjectType({
             body,
             tags,
             pdf_link,
+            art,
             published_date: {
               year: published_date.getFullYear(),
               month: published_date.getMonth(),
